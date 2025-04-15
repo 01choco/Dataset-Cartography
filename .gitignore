@@ -1,5 +1,6 @@
 data-map/**/*.jsonl
 data-map/**/*.json
+train-eval/src/api/**/*.json
 **/__pycache__/
 *.py[cod]
 **/outputs/
