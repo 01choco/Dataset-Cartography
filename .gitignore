@@ -1,3 +1,4 @@
 data-map/**/*.jsonl
 **/__pycache__/
 *.py[cod]
+**/outputs/
