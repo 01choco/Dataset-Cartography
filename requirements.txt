@@ -27,6 +27,7 @@ decorator @ file:///opt/conda/conda-bld/decorator_1643638310831/work
 deepspeed==0.16.2
 dill==0.3.8
 distro==1.9.0
+docker-pycreds==0.4.0
 docstring_parser==0.16
 einops==0.8.0
 eval_type_backport==0.2.2
@@ -39,6 +40,8 @@ fire==0.7.0
 fonttools==4.55.3
 frozenlist==1.5.0
 fsspec==2024.9.0
+gitdb==4.0.12
+GitPython==3.1.44
 google-api-core==2.24.2
 google-api-python-client==2.167.0
 google-auth==2.39.0
@@ -69,7 +72,7 @@ jupyter_core @ file:///croot/jupyter_core_1718818295206/work
 kiwisolver==1.4.7
 lazy_loader==0.4
 librosa==0.11.0
--e git+https://github.com/01choco/Dataset-Cartography@78132c2b58387b0c9084aecba9cb4288c6e5a0d0#egg=llamafactory&subdirectory=train-eval/LLaMA-Factory
+-e git+https://github.com/01choco/Dataset-Cartography@850052211c6b0d7d535aace96a7bea406d4a8725#egg=llamafactory&subdirectory=train-eval/LLaMA-Factory
 llvmlite==0.43.0
 markdown-it-py==3.0.0
 MarkupSafe==2.1.5
@@ -148,9 +151,12 @@ scipy==1.13.1
 seaborn==0.13.2
 semantic-version==2.10.0
 sentencepiece==0.2.0
+sentry-sdk==2.26.0
+setproctitle==1.3.5
 shellingham==1.5.4
 shtab==1.7.2
 six==1.16.0
+smmap==5.0.2
 sniffio==1.3.1
 soundfile==0.13.1
 soxr==0.5.0.post1
@@ -177,6 +183,7 @@ tzdata==2024.2
 uritemplate==4.1.1
 urllib3==2.3.0
 uvicorn==0.34.1
+wandb==0.19.9
 wcwidth @ file:///Users/ktietz/demo/mc3/conda-bld/wcwidth_1629357192024/work
 websockets==12.0
 xxhash==3.5.0
