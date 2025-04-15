@@ -1,0 +1,12 @@
+### model
+gpt_model: gpt-4o-2024-11-20
+#gpt_model: gpt-4o-mini
+### dataset
+dataset: MMInstruction/VLFeedback
+start_point: 75433
+max_data: 100000000000
+
+### training
+sample : True
+sample_size : 100
+output_dir: /data/dataset_cartography/data/vlfeedback/images

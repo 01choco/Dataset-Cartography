@@ -1,0 +1,8 @@
+# test config
+test_size: 0.1
+seed: 42
+
+# dataset path
+input_path: ./ultra/st/ultra_st_low_average_ver2.jsonl
+output_path: ./ultra_st_low_average_ver2_pair.jsonl
+type: fine # help, fine

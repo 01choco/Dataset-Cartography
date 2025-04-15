@@ -1,0 +1,4 @@
+# split_data_path: 
+split_data_path: /data/dataset_cartography/data/raw/st_ultra_full_proxy_cosine_fine-grained.jsonl
+# split_data_path: /home/eunwon/Dataset-Cartography-for-Alignment/results/st_vl_30%_proxy_cosine_fine-grained.jsonl
+output_filenames: ultra_full_test
