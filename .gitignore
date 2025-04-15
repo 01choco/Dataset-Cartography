@@ -2,3 +2,6 @@ data-map/**/*.jsonl
 **/__pycache__/
 *.py[cod]
 **/outputs/
+*.zip
+*.pdf
+*.png
