@@ -1,6 +1,6 @@
 {
   "highavg": {
-    "file_name": "full_highavg.jsonl",
+    "file_name": "full/full_highavg.jsonl",
     "ranking": true,
     "columns": {
       "prompt": "instruction",
@@ -10,7 +10,7 @@
     }
   },
   "highvar": {
-    "file_name": "full_highvar.jsonl",
+    "file_name": "full/full_highvar.jsonl",
     "ranking": true,
     "columns": {
       "prompt": "instruction",
@@ -20,7 +20,7 @@
     }
   },
   "lowavg": {
-    "file_name": "full_lowavg.jsonl",
+    "file_name": "full/full_lowavg.jsonl",
     "ranking": true,
     "columns": {
       "prompt": "instruction",
@@ -30,7 +30,7 @@
     }
   },
   "lowvar": {
-    "file_name": "full_lowvar.jsonl",
+    "file_name": "full/full_lowvar.jsonl",
     "ranking": true,
     "columns": {
       "prompt": "instruction",
@@ -40,7 +40,7 @@
     }
   },
   "full": {
-    "file_name": "full_full.jsonl",
+    "file_name": "full/full_full.jsonl",
     "ranking": true,
     "columns": {
       "prompt": "instruction",

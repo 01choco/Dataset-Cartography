@@ -1,7 +1,7 @@
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
-def get_sheet_data(dataset):
+def get_sheet_data(model, typ):
     SERVICE_ACCOUNT_FILE = './src/api/dc-hyperparameter-search-95b4be9934ce.json'
     SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 
@@ -11,8 +11,9 @@ def get_sheet_data(dataset):
     service = build('sheets', 'v4', credentials=credentials)
 
     SPREADSHEET_ID = '1vMDuJW2vcFHHRLAZkm55PdUhKO3i66ykQgY08I_0nsw'
-    dataset = list(dataset)[0]
-    RANGE_NAME = f"'{dataset}'!A2:B"
+    model = list(model)[0]
+    typ = list(typ)[0]
+    RANGE_NAME = f"'{model}-{typ}'!A3:D"
 
 
     sheet = service.spreadsheets()

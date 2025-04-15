@@ -190,7 +190,7 @@ def main(**kwargs):
 
 
     # CSV 저장
-    csv_filename = "results_llama_13b.csv"
+    csv_filename = "results_hhh.csv"
     with open(csv_filename, mode="a", newline="") as file:
         writer = csv.writer(file)
         for result in results:

@@ -7,23 +7,23 @@ aiosignal==1.3.2
 annotated-types==0.7.0
 antlr4-python3-runtime==4.9.3
 anyio==4.7.0
-asttokens @ file:///croot/asttokens_1743630435401/work
+asttokens
 async-timeout==5.0.1
 attrs==24.3.0
 audioread==3.0.1
 av==14.3.0
-backcall @ file:///home/ktietz/src/ci/backcall_1611930011877/work
+backcall
 cachetools==5.5.2
 certifi==2024.12.14
 cffi==1.17.1
 charset-normalizer==3.4.1
 click==8.1.8
-comm @ file:///croot/comm_1709322850197/work
+comm
 contourpy==1.3.0
 cycler==0.12.1
 datasets==3.2.0
-debugpy @ file:///croot/debugpy_1736267418885/work
-decorator @ file:///opt/conda/conda-bld/decorator_1643638310831/work
+debugpy
+decorator
 deepspeed==0.16.2
 dill==0.3.8
 distro==1.9.0
@@ -31,7 +31,7 @@ docker-pycreds==0.4.0
 docstring_parser==0.16
 einops==0.8.0
 eval_type_backport==0.2.2
-exceptiongroup @ file:///croot/exceptiongroup_1706031385326/work
+exceptiongroup
 executing==2.2.0
 fastapi==0.115.12
 ffmpy==0.5.0
@@ -69,7 +69,7 @@ Jinja2==3.1.5
 jiter==0.8.2
 joblib==1.4.2
 jupyter_client==8.6.1
-jupyter_core @ file:///croot/jupyter_core_1718818295206/work
+jupyter_core
 kiwisolver==1.4.7
 lazy_loader==0.4
 librosa==0.11.0
@@ -78,13 +78,13 @@ llvmlite==0.43.0
 markdown-it-py==3.0.0
 MarkupSafe==2.1.5
 matplotlib==3.9.4
-matplotlib-inline @ file:///opt/conda/conda-bld/matplotlib-inline_1662014470464/work
+matplotlib-inline
 mdurl==0.1.2
 mpmath==1.3.0
 msgpack==1.1.0
 multidict==6.1.0
 multiprocess==0.70.16
-nest-asyncio @ file:///croot/nest-asyncio_1708532673751/work
+nest-asyncio
 networkx==3.2.1
 ninja==1.11.1.3
 nltk==3.9.1
@@ -111,18 +111,18 @@ packaging==24.0
 pandas==2.2.3
 parso==0.8.3
 peft==0.15.1
-pexpect @ file:///tmp/build/80754af9/pexpect_1605563209008/work
-pickleshare @ file:///tmp/build/80754af9/pickleshare_1606932040724/work
+pexpect
+pickleshare
 pillow==10.4.0
 platformdirs==3.11.0
 pooch==1.8.2
-prompt-toolkit @ file:///croot/prompt-toolkit_1704404351921/work
+prompt-toolkit
 propcache==0.2.1
 proto-plus==1.26.1
 protobuf==5.29.2
 psutil==5.9.8
-ptyprocess @ file:///tmp/build/80754af9/ptyprocess_1609355006118/work/dist/ptyprocess-0.7.0-py2.py3-none-any.whl
-pure-eval @ file:///opt/conda/conda-bld/pure_eval_1646925070566/work
+ptyprocess
+pure-eval
 py-cpuinfo==9.0.0
 pyarrow==18.1.0
 pyasn1==0.6.1
@@ -133,7 +133,7 @@ pydantic_core==2.27.2
 pydub==0.25.1
 Pygments==2.17.2
 pyparsing==3.2.1
-python-dateutil @ file:///croot/python-dateutil_1716495738603/work
+python-dateutil
 python-multipart==0.0.20
 pytz==2024.2
 PyYAML==6.0.1
@@ -178,14 +178,14 @@ transformers==4.51.3
 triton==3.1.0
 trl==0.9.6
 typer==0.15.2
-typing_extensions @ file:///croot/typing_extensions_1734714854207/work
+typing_extensions
 tyro==0.8.14
 tzdata==2024.2
 uritemplate==4.1.1
 urllib3==2.3.0
 uvicorn==0.34.1
 wandb==0.19.9
-wcwidth @ file:///Users/ktietz/demo/mc3/conda-bld/wcwidth_1629357192024/work
+wcwidth
 websockets==12.0
 xxhash==3.5.0
 yarl==1.18.3
