@@ -17,7 +17,7 @@ def create_yaml(cfg, i, param, template):
     new['learning_rate'] = float(lr)
     new['output_dir'] = f'{cfg.save_path}/{cfg.dataset}/{cfg.dataset}-{i}'
     
-    filename = f'./DC-LLaMA-Factory/{cfg.yaml_path}/{cfg.dataset}_base_{i}.yaml'
+    filename = f'./LLaMA-Factory/{cfg.yaml_path}/{cfg.dataset}_base_{i}.yaml'
 
     # save .yaml files
     with open(filename, 'w') as f:
@@ -29,7 +29,7 @@ def train_model(cfg, i):
     print(f"Training model using {cfg.dataset}_base_{i}.yaml")
 
     cwd = os.getcwd()
-    os.chdir("DC-LLaMA-Factory")
+    os.chdir("LLaMA-Factory")
 
     command = f"CUDA_VISIBLE_DEVICES={cfg.avail_devices} PYTHONPATH=./src llamafactory-cli train {cfg.yaml_path}/{cfg.dataset}_base_{i}.yaml"
     subprocess.run(command, shell=True)
@@ -40,7 +40,7 @@ def export_model(cfg, i, template):
     print(f"Exporting model using {cfg.dataset}_base_{i}.yaml")
 
     cwd = os.getcwd()
-    os.chdir("DC-LLaMA-Factory")
+    os.chdir("LLaMA-Factory")
 
     checkpoint_list = cfg.checkpoint_list
     adapter_name = f'{cfg.dataset}-{i}'
@@ -81,7 +81,7 @@ def delete_model(cfg, i):
     print(f"Deleting model using {cfg.dataset}_base_{i}.yaml")
     models = [f'{cfg.dataset}_base_{i}_epoch{j+1}' for j in range(3)]
     for model in models:
-        del_path = f'./DC-LLaMA-Factory/{cfg.model_path}/{cfg.dataset}/{model}'
+        del_path = f'./LLaMA-Factory/{cfg.model_path}/{cfg.dataset}/{model}'
         command = f"rm -r {del_path}"
         subprocess.run(command, shell=True)
         print(f"Deleted {del_path}.")
@@ -90,10 +90,10 @@ def delete_model(cfg, i):
 def main(cfg):
     values = get_sheet_data({cfg.dataset})
 
-    with open(f'./DC-LLaMA-Factory/{cfg.yaml_path}/template.yaml', 'r') as f:
+    with open(f'./LLaMA-Factory/{cfg.yaml_path}/template.yaml', 'r') as f:
         template = yaml.safe_load(f)
     
-    with open(f'./DC-LLaMA-Factory/{cfg.export_yaml_path}/template.yaml', 'r') as f:
+    with open(f'./LLaMA-Factory/{cfg.export_yaml_path}/template.yaml', 'r') as f:
         export_template = yaml.safe_load(f)
     
     for i,param in enumerate(values):
@@ -103,7 +103,8 @@ def main(cfg):
                 train_model(cfg, i)
             if cfg.export == True:
                 export_model(cfg, i, export_template)
-            evaluate_model(cfg, i)
+            if cfg.eval == True:
+                evaluate_model(cfg, i)
             if cfg.export == True:
                 delete_model(cfg, i)
 
