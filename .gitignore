@@ -7,3 +7,5 @@ train-eval/src/api/**/*.json
 *.zip
 *.pdf
 *.png
+/.idea/
+*.jsonl
