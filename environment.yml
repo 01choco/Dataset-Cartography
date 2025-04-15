@@ -1,0 +1,9 @@
+name: dc
+channels:
+  - defaults
+dependencies:
+  - python=3.9
+  - yaml
+  - pyyaml
+  - ipykernel
+prefix: /home/eunwon/.conda/envs/carto
