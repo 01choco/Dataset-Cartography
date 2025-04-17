@@ -1,5 +1,5 @@
 ### model : meta-llama/Llama-2-7b-chat-hf / meta-llama/Meta-Llama-3-8B-Instruct
-model_name_or_path: meta-llama/Llama-2-7b-chat-hf
+model_name_or_path: princeton-nlp/Llama-3-Base-8B-SFT
 trust_remote_code: true
 
 ### method
@@ -27,7 +27,7 @@ plot_loss: true
 overwrite_output_dir: true
 
 ### train
-per_device_train_batch_size: 2
+per_device_train_batch_size: 4
 gradient_accumulation_steps: 16
 learning_rate: 1.0e-6
 num_train_epochs: 3.0
@@ -37,7 +37,7 @@ bf16: true
 ddp_timeout: 180000000
 
 ### eval
-val_size: 0.05
+val_size: 0.01
 per_device_eval_batch_size: 4
 eval_strategy: steps
-eval_steps: 3000
+eval_steps: 500
