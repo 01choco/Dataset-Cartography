@@ -29,8 +29,8 @@
       "rejected": "rejected"
     }
   },
-  "lowvar": {
-    "file_name": "full/full_lowvar.jsonl",
+  "random": {
+    "file_name": "full/full_random_42.jsonl",
     "ranking": true,
     "columns": {
       "prompt": "instruction",
