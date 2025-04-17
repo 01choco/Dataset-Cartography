@@ -13,7 +13,7 @@ def get_sheet_data(model, typ):
     SPREADSHEET_ID = '1vMDuJW2vcFHHRLAZkm55PdUhKO3i66ykQgY08I_0nsw'
     model = list(model)[0]
     typ = list(typ)[0]
-    RANGE_NAME = f"'{model}-{typ}'!A3:D"
+    RANGE_NAME = f"'{model}-{typ}'!A3:E"
 
 
     sheet = service.spreadsheets()

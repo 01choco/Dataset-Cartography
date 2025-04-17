@@ -8,7 +8,7 @@ import os
 import sys
 
 def create_yaml(cfg, i, param, template):
-    beta, lr, ratio, data = param
+    beta, lr, ratio, data, ckpt = param
     if cfg.type == "dpo":
         print(f"Creating {cfg.model}_{cfg.type}_{data}_{i}.yaml with beta={beta}, lr={lr}, data={data}")
     
@@ -20,6 +20,7 @@ def create_yaml(cfg, i, param, template):
     new['learning_rate'] = float(lr)
     new['dataset'] = data
     new['output_dir'] = f'{cfg.save_path}/{cfg.model}-{cfg.type}-{data}-{i}'
+    new['save_steps'] = int(ckpt)
     if cfg.type == "simpo":
         new['simpo_gamma'] = float(ratio)
     
@@ -32,7 +33,7 @@ def create_yaml(cfg, i, param, template):
     print(f"Created .yaml file: {filename}")
 
 def train_model(cfg, i, param):
-    beta, lr, ratio, data = param
+    beta, lr, ratio, data, ckpt = param
     print(f"Training model using {cfg.model}_{cfg.type}_{data}_{i}.yaml")
 
     cwd = os.getcwd()
@@ -44,7 +45,7 @@ def train_model(cfg, i, param):
     os.chdir(cwd)
 
 def export_model(cfg, i, param, template):
-    beta, lr, ratio, data = param
+    beta, lr, ratio, data, ckpt = param
     print(f"Exporting model using {cfg.model}_{cfg.type}_{data}_{i}.yaml")
 
     cwd = os.getcwd()
@@ -86,7 +87,7 @@ def export_model(cfg, i, param, template):
     os.chdir(cwd)
 
 def delete_model(cfg, i, param):
-    beta, lr, ratio, data = param
+    beta, lr, ratio, data, ckpt = param
     print(f"Deleting model using {cfg.model}_{cfg.type}_{data}_{i}.yaml")
     models = [f'{cfg.model}_{cfg.type}_{data}_{i}_epoch{j+1}' for j in range(3)]
     for model in models:
@@ -95,7 +96,7 @@ def delete_model(cfg, i, param):
         subprocess.run(command, shell=True)
         print(f"Deleted {del_path}.")
 
-@hydra.main(version_base=None, config_path=".", config_name="hyper-config")
+@hydra.main(version_base=None, config_path=".", config_name="hyper-config4")
 def main(cfg):
     values = get_sheet_data({cfg.model}, {cfg.type})
     print(values)

@@ -7,7 +7,7 @@ import subprocess
 import time
 
 def evaluate_model_mt(cfg, i, param):
-    beta, lr, ratio, data = param
+    beta, lr, ratio, data, ckpt = param
     print(f"MT-Bench Evaluating model using {cfg.model}_{cfg.type}_{data}_{i}.yaml")
     models = [f'{cfg.model}_{cfg.type}_{data}_{i}_epoch{j+1}' for j in range(3)]
     model_list = ' '.join(models)
@@ -78,7 +78,7 @@ def evaluate_model_mt(cfg, i, param):
     write_sheet_data_mt(i, {cfg.dataset})
 
 def evaluate_model_evol(cfg, i, param):
-    beta, lr, ratio, data = param
+    beta, lr, ratio, data, ckpt = param
     print(f"Evol_Instruct Evaluating model using {cfg.model}_{cfg.type}_{data}_{i}.yaml")
     models = [f'{cfg.model}_{cfg.type}_{data}_{i}_epoch{j+1}' for j in range(3)]
     model_list = ' '.join(models)
@@ -152,7 +152,7 @@ def evaluate_model_alpaca(cfg, i, param):
     write_sheet_data_alpaca(i, {cfg.dataset})
 
 def evaluate_model_hhh(cfg, i, param):
-    beta, lr, ratio, data = param
+    beta, lr, ratio, data, ckpt = param
     print(f"HHH Evaluating model using {cfg.model}_{cfg.type}_{data}_{i}.yaml")
     models = [f'{cfg.model}_{cfg.type}_{data}_{i}_epoch{j+1}' for j in range(3)]
     model_list = ' '.join(models)
