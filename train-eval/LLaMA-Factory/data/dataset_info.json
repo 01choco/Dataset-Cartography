@@ -48,5 +48,25 @@
       "chosen": "chosen",
       "rejected": "rejected"
     }
+  },
+  "highvar-bin": {
+    "file_name": "full/full_highvar_bin.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "highavg-bin": {
+    "file_name": "full/full_highavg_bin.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
   }
 }
