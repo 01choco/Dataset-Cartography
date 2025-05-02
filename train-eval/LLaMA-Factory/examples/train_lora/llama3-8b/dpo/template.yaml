@@ -27,7 +27,7 @@ overwrite_output_dir: true
 
 ### train
 per_device_train_batch_size: 2
-gradient_accumulation_steps: 8
+gradient_accumulation_steps: 16
 learning_rate: 5.0e-6
 num_train_epochs: 3.0
 lr_scheduler_type: cosine
@@ -36,7 +36,7 @@ bf16: true
 ddp_timeout: 180000000
 
 ### eval
-val_size: 0.05
+val_size: 0.01
 per_device_eval_batch_size: 4
 eval_strategy: steps
-eval_steps: 3000
+eval_steps: 100
