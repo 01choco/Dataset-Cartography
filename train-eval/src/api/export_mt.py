@@ -2,7 +2,7 @@ import csv
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
-def write_sheet_data_mt(i, dataset):
+def write_sheet_data_mt(i, name):
     SERVICE_ACCOUNT_FILE = './src/api/dc-hyperparameter-search-95b4be9934ce.json'
     SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 
@@ -14,23 +14,34 @@ def write_sheet_data_mt(i, dataset):
 
     SPREADSHEET_ID = '1vMDuJW2vcFHHRLAZkm55PdUhKO3i66ykQgY08I_0nsw'
 
-    append(i, dataset, 'D', 'pairwise-baseline', sheet, SPREADSHEET_ID)
-    append(i, dataset, 'K', 'single-1', sheet, SPREADSHEET_ID)
-    append(i, dataset, 'N', 'single-2', sheet, SPREADSHEET_ID)
-    append(i, dataset, 'Q', 'single-avg', sheet, SPREADSHEET_ID)
-   
+    append(i, name, 'G', 'pairwise-baseline', sheet, SPREADSHEET_ID)
+    append(i, name, 'N', 'single-1', sheet, SPREADSHEET_ID)
+    append(i, name, 'Q', 'single-2', sheet, SPREADSHEET_ID)
+    append(i, name, 'T', 'single-avg', sheet, SPREADSHEET_ID)
+
     print("✅ MT-Bench Data written to Google Sheet.")
     
-def append(i, dataset, start, filename, sheet, SPREADSHEET_ID):
-    dataset = list(dataset)[0]
-    RANGE_NAME = f"'{dataset}'!{start}{3*i+3}"
+def append(i, name, start, filename, sheet, SPREADSHEET_ID):
+    RANGE_NAME = f"'{name}'!{start}{3*i+3}"
 
     csv_data = []
-    with open(f'./eval/FastChat/fastchat/llm_judge/mt_bench-gpt-4o-2024-11-20-{filename}.csv', newline='') as csvfile:
+    with open(f'./eval/FastChat/fastchat/llm_judge/mt_bench-gpt-4o-2024-11-20-{filename}.csv', mode='r', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile)
         next(reader)  
         for row in reader:
-            csv_data.append(row)
+            print("raw row:", row)  # 테스트용
+            numeric_row = []
+            for val in row:
+                try:
+                    # 정수로 변환 가능한 경우 정수로
+                    if '.' not in val:
+                        numeric_row.append(int(val))
+                    else:
+                        numeric_row.append(float(val))  # 소수점이 있으면 float로
+                except ValueError:
+                    numeric_row.append(val)  # 숫자로 변환 불가하면 문자열로 유지
+            csv_data.append(numeric_row)
+
 
     request = sheet.values().update(
         spreadsheetId=SPREADSHEET_ID,

@@ -11,9 +11,7 @@ def get_sheet_data(model, typ):
     service = build('sheets', 'v4', credentials=credentials)
 
     SPREADSHEET_ID = '1vMDuJW2vcFHHRLAZkm55PdUhKO3i66ykQgY08I_0nsw'
-    model = list(model)[0]
-    typ = list(typ)[0]
-    RANGE_NAME = f"'{model}-{typ}'!A3:E"
+    RANGE_NAME = f"'{model}-{typ}'!B3:F"
 
 
     sheet = service.spreadsheets()

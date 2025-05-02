@@ -9,19 +9,19 @@ save_path : saves/${model}/${type}
 yaml_path : examples/train_lora/${model}/${type}
 avail_devices : 3,4
 start : 13 #이 숫자부터 진행 
-end : 16 # 이 숫자까지 진행
+end : 17 # 이 숫자까지 진행
 
 # simpo config (simpo)
 
 # export
-export : True
+export : False
 export_yaml_path : examples/merge_lora/${model}/${type}
 model_path : models/${model}/${type}
 
 # export config
-epoch_list : [] # 중간 epoch eval할 경우 
+epoch_list : [1, 2] # 중간 epoch eval할 경우 
 last_ckpt : True # 훈련 종료 후 마지막 checkpoint eval할 경우
-last_ckpt_epoch : 1 # 마지막 checkpoint eval할 경우 epoch
+last_ckpt_epoch : 3 # 마지막 checkpoint eval할 경우 epoch
 
 # eval
 eval : True

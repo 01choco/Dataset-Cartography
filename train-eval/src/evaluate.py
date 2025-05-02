@@ -4,12 +4,16 @@ from api.export_alpaca import write_sheet_data_alpaca
 from api.export_hhh import write_sheet_data_hhh
 import os
 import subprocess
+import threading
 import time
 
 def evaluate_model_mt(cfg, i, param):
     beta, lr, ratio, data, ckpt = param
     print(f"MT-Bench Evaluating model using {cfg.model}_{cfg.type}_{data}_{i}.yaml")
-    models = [f'{cfg.model}_{cfg.type}_{data}_{i}_epoch{j+1}' for j in range(3)]
+    eval_list = cfg.epoch_list.copy()
+    if cfg.last_ckpt == True:
+        eval_list.append(cfg.last_ckpt_epoch)
+    models = [f'{cfg.model}_{cfg.type}_{data}_{i}_epoch{j}' for j in eval_list]
     model_list = ' '.join(models)
     judge_name = f'{cfg.judge_name}'
 
@@ -17,33 +21,31 @@ def evaluate_model_mt(cfg, i, param):
     os.chdir("eval/FastChat/fastchat/llm_judge")
 
     if cfg.parallel_eval is True:
-        commands = []
-        for i, model in enumerate(models):
-            model_path = f'../../../../DC-LLaMA-Factory/{cfg.model_path}/{model}'
-            if i % 2 == 0:
-                print(i)
+        commands_1 = []
+        commands_2 = []
+        for idx, model in enumerate(models):
+            model_path = f'../../../../LLaMA-Factory/{cfg.model_path}/{model}'
+            if idx % 2 == 0:
                 inf_command = f"CUDA_VISIBLE_DEVICES={cfg.judge_device} PYTHONPATH=../.. python gen_model_answer.py --model-path {model_path} --model-id {model}" 
+                commands_1.append(inf_command)
             else:
                 inf_command = f"CUDA_VISIBLE_DEVICES={cfg.judge_device_2} PYTHONPATH=../.. python gen_model_answer.py --model-path {model_path} --model-id {model}" 
-            commands.append(inf_command)
+                commands_2.append(inf_command)
 
-        max_concurrent = 2  
-        processes = []
-        # print (commands)
+        def run_commands(cmd_list, cuda_visible_device):
+            os.environ["CUDA_VISIBLE_DEVICES"] = str(cuda_visible_device)
+            for cmd in cmd_list:
+                print(f"Running on GPU {cuda_visible_device}: {cmd}")
+                subprocess.run(cmd, shell=True)
         
-        for cmd in commands:
-            while len(processes) >= max_concurrent:
-                for p in processes:
-                    if p.poll() is not None:
-                        processes.remove(p)
-                time.sleep(1)
+        thread1 = threading.Thread(target=run_commands, args=(commands_1, cfg.judge_device))
+        thread2 = threading.Thread(target=run_commands, args=(commands_2, cfg.judge_device_2))
 
-            print(f"Starting: {cmd}")
-            p = subprocess.Popen(cmd, shell=True)
-            processes.append(p)
+        thread1.start()
+        thread2.start()
 
-        for p in processes:
-            p.wait()
+        thread1.join()
+        thread2.join()
 
         print("Parallel gen_model_answer done.")
         
@@ -59,7 +61,7 @@ def evaluate_model_mt(cfg, i, param):
         os.chdir(cwd)
     else:
         for model in models:
-            model_path = f'../../../../DC-LLaMA-Factory/{cfg.model_path}/{model}'
+            model_path = f'../../../../LLaMA-Factory/{cfg.model_path}/{model}'
             inf_command = f"CUDA_VISIBLE_DEVICES={cfg.judge_device} PYTHONPATH=../.. python gen_model_answer.py --model-path {model_path} --model-id {model}" 
             subprocess.run(inf_command, shell=True)
         
@@ -75,44 +77,48 @@ def evaluate_model_mt(cfg, i, param):
         os.chdir(cwd)
 
     # export result to google sheet
-    write_sheet_data_mt(i, {cfg.dataset})
+    name = f'{cfg.model}-{cfg.type}'
+    write_sheet_data_mt(i, name)
 
 def evaluate_model_evol(cfg, i, param):
     beta, lr, ratio, data, ckpt = param
     print(f"Evol_Instruct Evaluating model using {cfg.model}_{cfg.type}_{data}_{i}.yaml")
-    models = [f'{cfg.model}_{cfg.type}_{data}_{i}_epoch{j+1}' for j in range(3)]
+    eval_list = cfg.epoch_list.copy()
+    if cfg.last_ckpt == True:
+        eval_list.append(cfg.last_ckpt_epoch)
+    models = [f'{cfg.model}_{cfg.type}_{data}_{i}_epoch{j}' for j in eval_list]
     model_list = ' '.join(models)
     judge_name = f'{cfg.judge_name}'
 
     cwd = os.getcwd()
     os.chdir("eval/FastChat/fastchat/llm_judge")
+
     if cfg.parallel_eval is True:
-        commands = []
-        for k, model in enumerate(models):
-            model_path = f'../../../../DC-LLaMA-Factory/{cfg.model_path}/{model}'
-            if k % 2 == 0:
+        commands_1 = []
+        commands_2 = []
+        for idx, model in enumerate(models):
+            model_path = f'../../../../LLaMA-Factory/{cfg.model_path}/{model}'
+            if idx % 2 == 0:
                 inf_command = f"CUDA_VISIBLE_DEVICES={cfg.judge_device} PYTHONPATH=../.. python gen_model_answer.py --model-path {model_path} --model-id {model} --bench-name evol_instruct" 
+                commands_1.append(inf_command)
             else:
                 inf_command = f"CUDA_VISIBLE_DEVICES={cfg.judge_device_2} PYTHONPATH=../.. python gen_model_answer.py --model-path {model_path} --model-id {model} --bench-name evol_instruct" 
-            commands.append(inf_command)
+                commands_2.append(inf_command)
 
-        max_concurrent = 2  
-        processes = []
-        # print (commands)
+        def run_commands(cmd_list, cuda_visible_device):
+            os.environ["CUDA_VISIBLE_DEVICES"] = str(cuda_visible_device)
+            for cmd in cmd_list:
+                print(f"Running on GPU {cuda_visible_device}: {cmd}")
+                subprocess.run(cmd, shell=True)
         
-        for cmd in commands:
-            while len(processes) >= max_concurrent:
-                for p in processes:
-                    if p.poll() is not None:
-                        processes.remove(p)
-                time.sleep(1)
+        thread1 = threading.Thread(target=run_commands, args=(commands_1, cfg.judge_device))
+        thread2 = threading.Thread(target=run_commands, args=(commands_2, cfg.judge_device_2))
 
-            print(f"Starting: {cmd}")
-            p = subprocess.Popen(cmd, shell=True)
-            processes.append(p)
+        thread1.start()
+        thread2.start()
 
-        for p in processes:
-            p.wait()
+        thread1.join()
+        thread2.join()
 
         print("Parallel gen_model_answer done.")
         
@@ -128,7 +134,7 @@ def evaluate_model_evol(cfg, i, param):
         os.chdir(cwd)
     else:
         for model in models:
-            model_path = f'../../../../DC-LLaMA-Factory/{cfg.model_path}/{model}'
+            model_path = f'../../../../LLaMA-Factory/{cfg.model_path}/{model}'
             inf_command = f"CUDA_VISIBLE_DEVICES={cfg.judge_device} PYTHONPATH=../.. python gen_model_answer.py --model-path {model_path} --model-id {model} --bench-name evol_instruct" 
             subprocess.run(inf_command, shell=True)
         
@@ -144,17 +150,26 @@ def evaluate_model_evol(cfg, i, param):
         os.chdir(cwd)
 
     # export result to google sheet
-    write_sheet_data_evol(i, {cfg.dataset})
+    name = f'{cfg.model}-{cfg.type}'
+    write_sheet_data_evol(i, name)
 
 def evaluate_model_alpaca(cfg, i, param):
+    beta, lr, ratio, data, ckpt = param
     pass
     # export result to google sheet
-    write_sheet_data_alpaca(i, {cfg.dataset})
+    write_sheet_data_alpaca(i, data)
 
 def evaluate_model_hhh(cfg, i, param):
     beta, lr, ratio, data, ckpt = param
+
     print(f"HHH Evaluating model using {cfg.model}_{cfg.type}_{data}_{i}.yaml")
-    models = [f'{cfg.model}_{cfg.type}_{data}_{i}_epoch{j+1}' for j in range(3)]
+    eval_list = cfg.epoch_list.copy()
+    if cfg.last_ckpt == True:
+        eval_list.append(cfg.last_ckpt_epoch)
+        models = [f'{cfg.model}_{cfg.type}_{data}_{i}_epoch{j}' for j in eval_list]
+        print(models)
+    else:
+        models = [f'{cfg.model}_{cfg.type}_{data}_{i}_epoch{j+1}' for j in range(3)]
     model_list = ' '.join(models)
     judge_name = f'{cfg.judge_name}'
 
@@ -162,14 +177,14 @@ def evaluate_model_hhh(cfg, i, param):
     os.chdir("eval/instruct-eval")
 
     for model in models:
-        model_path = f'../../../../DC-LLaMA-Factory/{cfg.model_path}/{model}'
-        inf_command = f"CUDA_VISIBLE_DEVICES={cfg.judge_device} CUDA_VISIBLE_DEVICES=2 python hhh.py main --model_name llama --model_path ${model} --load_8bit" 
+
+        model_path = f"/data/dataset_cartography/Dataset-Cartography/train-eval/LLaMA-Factory/{cfg.model_path}/{model}"
+        inf_command = f"CUDA_VISIBLE_DEVICES={cfg.judge_device} python hhh.py main --model_name causal --model_path {model_path} --load_8bit" 
         subprocess.run(inf_command, shell=True)
 
     os.chdir(cwd)
-
-    # export result to google sheet
-    write_sheet_data_hhh(i, {cfg.dataset})
+    name = f'{cfg.model}-{cfg.type}'
+    write_sheet_data_hhh(i, name, models)
 
 def evaluate_model(cfg, i, param):
     if cfg.mt_bench is True:

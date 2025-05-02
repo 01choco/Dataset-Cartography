@@ -7,9 +7,9 @@ epoch : 1.0
 # dpo config (llamafactory)
 save_path : saves/${model}/${type}
 yaml_path : examples/train_lora/${model}/${type}
-avail_devices : 3,4
-start : 13 #이 숫자부터 진행 
-end : 16 # 이 숫자까지 진행
+avail_devices : 0,1
+start : 8 #이 숫자부터 진행 
+end : 8 # 이 숫자까지 진행
 
 # simpo config (simpo)
 
@@ -26,15 +26,15 @@ last_ckpt_epoch : 1 # 마지막 checkpoint eval할 경우 epoch
 # eval
 eval : True
 judge_name : gpt-4o-2024-11-20
-judge_device : 3
-judge_device_2 : 4
+judge_device : 0
+judge_device_2 : 0
 parallel_eval : True
 
 # evaluation metric config
-mt_bench : True
+mt_bench : False
 evol_instruct : False
 alpaca_eval : False
-hhh : False
+hhh : True
 
 # delete
 delete : True
