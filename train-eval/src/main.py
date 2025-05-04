@@ -19,7 +19,7 @@ def create_yaml(cfg, i, param, template):
     new['pref_beta'] = float(beta)
     new['learning_rate'] = float(lr)
     new['dataset'] = data
-    new['output_dir'] = f'../../../../../data1/dataset_cartography/{cfg.save_path}/{cfg.model}-{cfg.type}-{data}-{i}'
+    new['output_dir'] = f'{cfg.save_path}/{cfg.model}-{cfg.type}-{data}-{i}'
     new['save_steps'] = float(ckpt)
     new['num_train_epochs'] = float(cfg.epoch)
     if cfg.type == "simpo":
@@ -54,7 +54,7 @@ def export_model(cfg, i, param, template):
 
     checkpoint_list = [int(float(ckpt)*cnt*2) for cnt in cfg.epoch_list]
     adapter_name = f'{cfg.model}-{cfg.type}-{data}-{i}'
-    adapter_path = f'../../../../../data1/dataset_cartography/{cfg.save_path}/{adapter_name}'
+    adapter_path = f'{cfg.save_path}/{adapter_name}'
 
     export_list = []
     for j, checkpoint in enumerate(checkpoint_list):
