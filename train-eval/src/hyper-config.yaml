@@ -14,7 +14,7 @@ end : 2 # 이 숫자까지 진행
 # simpo config (simpo)
 
 # export
-export : True
+export : False
 export_yaml_path : examples/merge_lora/${model}/${type}
 model_path : models/${model}/${type}
 
@@ -24,7 +24,7 @@ last_ckpt : True # 훈련 종료 후 마지막 checkpoint eval할 경우
 last_ckpt_epoch : 3 # 마지막 checkpoint eval할 경우 epoch
 
 # eval
-eval : True
+eval : False
 judge_name : gpt-4o-2024-11-20
 judge_device : 3
 judge_device_2 : 4
@@ -37,4 +37,4 @@ alpaca_eval : False
 hhh : False
 
 # delete
-delete : True
+delete : False
