@@ -20,7 +20,7 @@ def create_yaml(cfg, i, param, template):
     new['learning_rate'] = float(lr)
     new['dataset'] = data
     new['output_dir'] = f'{cfg.save_path}/{cfg.model}-{cfg.type}-{data}-{i}'
-    new['save_steps'] = float(ckpt)
+    new['save_steps'] = int(ckpt)
     new['num_train_epochs'] = float(cfg.epoch)
     if cfg.type == "simpo":
         new['simpo_gamma'] = float(ratio)
