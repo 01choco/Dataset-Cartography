@@ -1,0 +1,40 @@
+# train
+train : True
+type : dpo # dpo / simpo
+model : mistral-7b # mistral-7b / llama3-8b
+epoch : 3.0
+
+# dpo config (llamafactory)
+save_path : saves/${model}/${type}
+yaml_path : examples/train_lora/${model}/${type}
+avail_devices : 0,1,2,3
+start : 0 #이 숫자부터 진행 
+end : 0 # 이 숫자까지 진행
+
+# simpo config (simpo)
+
+# export
+export : False
+export_yaml_path : examples/merge_lora/${model}/${type}
+model_path : models/${model}/${type}
+
+# export config
+epoch_list : [1, 2] # 중간 epoch eval할 경우 
+last_ckpt : True # 훈련 종료 후 마지막 checkpoint eval할 경우
+last_ckpt_epoch : 3 # 마지막 checkpoint eval할 경우 epoch
+
+# eval
+eval : False
+judge_name : gpt-4o-2024-11-20
+judge_device : 3
+judge_device_2 : 4
+parallel_eval : True
+
+# evaluation metric config
+mt_bench : True
+evol_instruct : True
+alpaca_eval : False
+hhh : False
+
+# delete
+delete : False
