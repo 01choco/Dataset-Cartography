@@ -223,5 +223,35 @@
       "chosen": "chosen",
       "rejected": "rejected"
     }
+  },
+  "lowavg-3": {
+    "file_name": "sensitivity/full_lowavg_3.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "lowavg-11": {
+    "file_name": "sensitivity/full_lowavg_11.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "lowavg-22": {
+    "file_name": "sensitivity/full_lowavg_22.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
   }
 }
