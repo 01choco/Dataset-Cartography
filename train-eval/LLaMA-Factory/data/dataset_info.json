@@ -539,5 +539,35 @@
       "chosen": "chosen",
       "rejected": "rejected"
     }
+  },
+  "armorm_highavg": {
+    "file_name": "armorm/armorm_highavg.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "armorm_highvar": {
+    "file_name": "armorm/armorm_highvar.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected" 
+    }
+  },
+  "armorm_lowavg": {
+    "file_name": "armorm/armorm_lowavg.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
   }
 }
