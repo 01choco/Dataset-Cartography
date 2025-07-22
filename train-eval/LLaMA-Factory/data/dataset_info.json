@@ -569,5 +569,56 @@
       "chosen": "chosen",
       "rejected": "rejected"
     }
+  },
+  "gt_lowvar": {
+    "file_name": "lowvar/gt_lowvar.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "armorm_lowvar": {
+    "file_name": "lowvar/armorm_lowvar.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "full_lowvar": {
+    "file_name": "lowvar/full_lowvar.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "pd_lowvar": {
+    "file_name": "lowvar/pd_lowvar.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "vl_lowvar": {
+    "file_name": "lowvar/vl_lowvar.jsonl",
+    "ranking": true,
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+      "chosen": "chosen",
+      "rejected": "rejected",
+      "images": "images"
+    }
   }
 }
