@@ -477,8 +477,8 @@
       "images": "images"
     }
   },
-  "vl-full-lowvar": {
-    "file_name": "vlfeedback-full/vl_lowvar.jsonl",
+  "vl-full-lowvar-rd": {
+    "file_name": "vlfeedback-full/vl_lowvar_rd.jsonl",
     "ranking": true,
     "formatting": "sharegpt",
     "columns": {
@@ -570,8 +570,8 @@
       "rejected": "rejected"
     }
   },
-  "gt_lowvar": {
-    "file_name": "lowvar/gt_lowvar.jsonl",
+  "gt_lowvar_rd": {
+    "file_name": "lowvar_rd/gt_lowvar_rd.jsonl",
     "ranking": true,
     "columns": {
       "prompt": "instruction",
@@ -580,8 +580,8 @@
       "rejected": "rejected"
     }
   },
-  "armorm_lowvar": {
-    "file_name": "lowvar/armorm_lowvar.jsonl",
+  "armorm_lowvar_rd": {
+    "file_name": "lowvar_rd/armorm_lowvar_rd.jsonl",
     "ranking": true,
     "columns": {
       "prompt": "instruction",
@@ -590,8 +590,8 @@
       "rejected": "rejected"
     }
   },
-  "full_lowvar": {
-    "file_name": "lowvar/full_lowvar.jsonl",
+  "full_lowvar_rd": {
+    "file_name": "lowvar_rd/full_lowvar_rd.jsonl",
     "ranking": true,
     "columns": {
       "prompt": "instruction",
@@ -600,8 +600,8 @@
       "rejected": "rejected"
     }
   },
-  "pd_lowvar": {
-    "file_name": "lowvar/pd_lowvar.jsonl",
+  "pd_lowvar_rd": {
+    "file_name": "lowvar_rd/pd_lowvar_rd.jsonl",
     "ranking": true,
     "columns": {
       "prompt": "instruction",
@@ -610,8 +610,8 @@
       "rejected": "rejected"
     }
   },
-  "vl_lowvar": {
-    "file_name": "lowvar/vl_lowvar.jsonl",
+  "vl_lowvar_rd": {
+    "file_name": "lowvar_rd/vl_lowvar_rd.jsonl",
     "ranking": true,
     "formatting": "sharegpt",
     "columns": {
