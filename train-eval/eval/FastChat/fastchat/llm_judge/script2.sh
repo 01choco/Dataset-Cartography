@@ -1,0 +1,4 @@
+CUDA_VISIBLE_DEVICES=2 PYTHONPATH=../.. python gen_judgment_noenter.py --judge-model gpt-4o-2024-11-20 --model-list llama3-8b-instruct --bench-name evol_instruct --parallel 2
+CUDA_VISIBLE_DEVICES=2 PYTHONPATH=../.. python gen_judgment_noenter.py --judge-model gpt-4o-2024-11-20 --model-list llama3-8b-instruct --bench-name evol_instruct --parallel 2 --mode pairwise-baseline
+CUDA_VISIBLE_DEVICES=2 PYTHONPATH=../.. python show_result.py --judge-model gpt-4o-2024-11-20 --model-list llama3-8b-instruct --bench-name evol_instruct
+CUDA_VISIBLE_DEVICES=2 PYTHONPATH=../.. python show_result.py --judge-model gpt-4o-2024-11-20 --model-list llama3-8b-instruct --bench-name evol_instruct --mode pairwise-baseline

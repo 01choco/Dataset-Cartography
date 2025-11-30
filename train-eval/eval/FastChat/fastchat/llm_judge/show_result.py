@@ -24,16 +24,20 @@ def display_result_single(args):
 
     print("\n########## First turn ##########")
     df_1 = df[df["turn"] == 1].groupby(["model", "turn"]).mean()
-    print(df_1.sort_values(by="score", ascending=False))
+    print(df_1)
+    df_1.to_csv(f"{args.bench_name}-{args.judge_model}-{args.mode}-1.csv", index=True, encoding="utf-8")
 
     if args.bench_name == "mt_bench":
         print("\n########## Second turn ##########")
         df_2 = df[df["turn"] == 2].groupby(["model", "turn"]).mean()
-        print(df_2.sort_values(by="score", ascending=False))
+        print(df_2)
+        df_2.to_csv(f"{args.bench_name}-{args.judge_model}-{args.mode}-2.csv", index=True, encoding="utf-8")
 
         print("\n########## Average ##########")
         df_3 = df[["model", "score"]].groupby(["model"]).mean()
-        print(df_3.sort_values(by="score", ascending=False))
+        print(df_3)
+        df_3.to_csv(f"{args.bench_name}-{args.judge_model}-{args.mode}-avg.csv", index=True, encoding="utf-8")
+
 
 
 def display_result_pairwise(args):
@@ -89,7 +93,9 @@ def display_result_pairwise(args):
     )
     # print(df.sort_values(by="win_rate", ascending=False))
     # print(df.sort_values(by="loss_rate", ascending=True))
-    print(df.sort_values(by="win_rate_adjusted", ascending=False))
+    print(df)
+    df.to_csv(f"{args.bench_name}-{args.judge_model}-{args.mode}.csv", index=True, encoding="utf-8")
+
 
 
 if __name__ == "__main__":
