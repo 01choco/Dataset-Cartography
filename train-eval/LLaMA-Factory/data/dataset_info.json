@@ -620,5 +620,111 @@
       "rejected": "rejected",
       "images": "images"
     }
+  },
+  "10-13-gpt-original": {
+    "file_name": "10-13-gpt/min_original-pairwise.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "10-13-gpt-original-left": {
+    "file_name": "10-13-gpt/min_original_left-pairwise.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "10-13-gpt-refined": {
+    "file_name": "10-13-gpt/min_refined-pairwise.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "10-13-gpt-refined-left": {
+    "file_name": "10-13-gpt/min_refined_left-pairwise.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "50-13-min-original-entire": {
+    "file_name": "50-13-min/original_entire.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "50-13-min-original": {
+    "file_name": "50-13-min/original.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "50-13-min-refined-entire": {
+    "file_name": "50-13-min/refined_entire.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "50-13-min-refined": {
+    "file_name": "50-13-min/refined.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "arena10-original": {
+    "file_name": "inference-arena10-yeval-pairwise.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "arena10-refined": {
+    "file_name": "arena10-refined-yeval-pairwise.jsonl",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+  "ultra50-feedback": {
+    "file_name": "ultra50-feedback.jsonl"
+  },
+  "ultra50-refined": {
+    "file_name": "ultra50-refiner.jsonl"
   }
 }
