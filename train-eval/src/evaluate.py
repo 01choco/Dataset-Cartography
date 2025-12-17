@@ -36,7 +36,8 @@ def evaluate_model_mt(cfg, i, param):
             os.environ["CUDA_VISIBLE_DEVICES"] = str(cuda_visible_device)
             for cmd in cmd_list:
                 print(f"Running on GPU {cuda_visible_device}: {cmd}")
-                subprocess.run(cmd, shell=True)
+                if not cfg.mt_only_gpt and not cfg.mt_only_show:
+                    subprocess.run(cmd, shell=True)
         
         thread1 = threading.Thread(target=run_commands, args=(commands_1, cfg.judge_device))
         thread2 = threading.Thread(target=run_commands, args=(commands_2, cfg.judge_device_2))
@@ -51,28 +52,33 @@ def evaluate_model_mt(cfg, i, param):
         
         gen_command = f"PYTHONPATH=../.. python gen_judgment_noenter.py --judge-model {judge_name} --model-list {model_list} --parallel 2"
         show_command = f"PYTHONPATH=../.. python show_result.py --judge-model {judge_name} --model-list {model_list}"
-        subprocess.run(gen_command, shell=True)
+        if not cfg.mt_only_show:
+            subprocess.run(gen_command, shell=True)
         subprocess.run(show_command, shell=True)
 
         gen_command = f"PYTHONPATH=../.. python gen_judgment_noenter.py --judge-model {judge_name} --model-list {model_list} --parallel 2 --mode pairwise-baseline"
         show_command = f"PYTHONPATH=../.. python show_result.py --judge-model {judge_name} --model-list {model_list} --mode pairwise-baseline"
-        subprocess.run(gen_command, shell=True)
+        if not cfg.mt_only_show:
+            subprocess.run(gen_command, shell=True)
         subprocess.run(show_command, shell=True)
         os.chdir(cwd)
     else:
         for model in models:
             model_path = f'../../../../LLaMA-Factory/{cfg.model_path}/{model}'
             inf_command = f"CUDA_VISIBLE_DEVICES={cfg.judge_device} PYTHONPATH=../.. python gen_model_answer.py --model-path {model_path} --model-id {model}" 
-            subprocess.run(inf_command, shell=True)
+            if not cfg.mt_only_gpt and not cfg.mt_only_show:
+                subprocess.run(inf_command, shell=True)
         
         gen_command = f"PYTHONPATH=../.. python gen_judgment_noenter.py --judge-model {judge_name} --model-list {model_list} --parallel 2"
         show_command = f"PYTHONPATH=../.. python show_result.py --judge-model {judge_name} --model-list {model_list}"
-        subprocess.run(gen_command, shell=True)
+        if not cfg.mt_only_show:
+            subprocess.run(gen_command, shell=True)
         subprocess.run(show_command, shell=True)
 
         gen_command = f"PYTHONPATH=../.. python gen_judgment_noenter.py --judge-model {judge_name} --model-list {model_list} --parallel 2 --mode pairwise-baseline"
         show_command = f"PYTHONPATH=../.. python show_result.py --judge-model {judge_name} --model-list {model_list} --mode pairwise-baseline"
-        subprocess.run(gen_command, shell=True)
+        if not cfg.mt_only_show:
+            subprocess.run(gen_command, shell=True)
         subprocess.run(show_command, shell=True)
         os.chdir(cwd)
 
@@ -109,7 +115,8 @@ def evaluate_model_evol(cfg, i, param):
             os.environ["CUDA_VISIBLE_DEVICES"] = str(cuda_visible_device)
             for cmd in cmd_list:
                 print(f"Running on GPU {cuda_visible_device}: {cmd}")
-                subprocess.run(cmd, shell=True)
+                if not cfg.evol_only_gpt and not cfg.evol_only_show:
+                    subprocess.run(cmd, shell=True)
         
         thread1 = threading.Thread(target=run_commands, args=(commands_1, cfg.judge_device))
         thread2 = threading.Thread(target=run_commands, args=(commands_2, cfg.judge_device_2))
@@ -124,28 +131,33 @@ def evaluate_model_evol(cfg, i, param):
         
         gen_command = f"PYTHONPATH=../.. python gen_judgment_noenter.py --judge-model {judge_name} --model-list {model_list} --parallel 2 --bench-name evol_instruct"
         show_command = f"PYTHONPATH=../.. python show_result.py --judge-model {judge_name} --model-list {model_list} --bench-name evol_instruct"
-        subprocess.run(gen_command, shell=True)
+        if not cfg.evol_only_show:
+            subprocess.run(gen_command, shell=True)
         subprocess.run(show_command, shell=True)
 
         gen_command = f"PYTHONPATH=../.. python gen_judgment_noenter.py --judge-model {judge_name} --model-list {model_list} --parallel 2 --mode pairwise-baseline --bench-name evol_instruct"
         show_command = f"PYTHONPATH=../.. python show_result.py --judge-model {judge_name} --model-list {model_list} --mode pairwise-baseline --bench-name evol_instruct"
-        subprocess.run(gen_command, shell=True)
+        if not cfg.evol_only_show:
+            subprocess.run(gen_command, shell=True)
         subprocess.run(show_command, shell=True)
         os.chdir(cwd)
     else:
         for model in models:
             model_path = f'../../../../LLaMA-Factory/{cfg.model_path}/{model}'
             inf_command = f"CUDA_VISIBLE_DEVICES={cfg.judge_device} PYTHONPATH=../.. python gen_model_answer.py --model-path {model_path} --model-id {model} --bench-name evol_instruct" 
-            subprocess.run(inf_command, shell=True)
+            if not cfg.evol_only_gpt and not cfg.evol_only_show:
+                subprocess.run(inf_command, shell=True)
         
         gen_command = f"PYTHONPATH=../.. python gen_judgment_noenter.py --judge-model {judge_name} --model-list {model_list} --parallel 2 --bench-name evol_instruct"
         show_command = f"PYTHONPATH=../.. python show_result.py --judge-model {judge_name} --model-list {model_list} --bench-name evol_instruct"
-        subprocess.run(gen_command, shell=True)
+        if not cfg.evol_only_show:
+            subprocess.run(gen_command, shell=True)
         subprocess.run(show_command, shell=True)
 
         gen_command = f"PYTHONPATH=../.. python gen_judgment_noenter.py --judge-model {judge_name} --model-list {model_list} --parallel 2 --mode pairwise-baseline --bench-name evol_instruct"
         show_command = f"PYTHONPATH=../.. python show_result.py --judge-model {judge_name} --model-list {model_list} --mode pairwise-baseline --bench-name evol_instruct"
-        subprocess.run(gen_command, shell=True)
+        if not cfg.evol_only_show:
+            subprocess.run(gen_command, shell=True)
         subprocess.run(show_command, shell=True)
         os.chdir(cwd)
 
