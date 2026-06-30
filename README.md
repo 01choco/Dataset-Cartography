@@ -1,6 +1,5 @@
 # Dataset-Cartography
-**Dataset Cartography for human alignment** 
-@LDI Sogang. 2024
+Code for ACL 2026 Findings Paper **["Alignment Data Map for Efficient Preference Data Selection and Diagnosis"](https://aclanthology.org/2026.findings-acl.1906/)** 
 
 ## Requirements
 ```
